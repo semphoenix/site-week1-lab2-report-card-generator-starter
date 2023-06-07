@@ -284,11 +284,11 @@ function updateReportCard(reportCardTableElement, currentSemester) {
   if (reportCardTableElement) reportCardTableElement.innerHTML = ``;
 
   // add your code here
-  addReportCardHeaders(reportCardTab);
+  addReportCardHeaders(reportCardTableElement);
   studentData[currentSemester].forEach((course) =>
-    addCourseRowToReportCard(reportCardTab, course, 0)
+    addCourseRowToReportCard(reportCardTableElement, course, 0)
   );
-  addTotalsRow(reportCardTab);
+  addTotalsRow(reportCardTableElement);
 }
 
 /**
