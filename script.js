@@ -131,7 +131,7 @@ const semDropdownLabel = document.querySelector(".dropdown-label");
 const fallSemLi = document.querySelector("#fall-semester");
 const springSemLi = document.querySelector("#spring-semester");
 const winterTermLi = document.querySelector("#winter-term");
-const reportCardTab = document.querySelector(".report-card");
+const reportCardTab = document.querySelector(".report-card-table");
 /**
  * SOLUTIONS FOR STUDENT INFO DOM UPDATES
  */
