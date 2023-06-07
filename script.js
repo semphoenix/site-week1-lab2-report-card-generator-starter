@@ -232,6 +232,7 @@ function addReportCardHeaders(reportCardTableElement) {
  */
 function addCourseRowToReportCard(reportCardTableElement, course, rowNum) {
   // update the code here with information about the course passed to this function
+  let points = gpaPointsLookup[course.grade];
   reportCardTableElement.innerHTML += `
   <div class="table-row course-row row-${rowNum + 1} ${
     rowNum % 2 === 1 ? "odd" : "even"
@@ -241,6 +242,7 @@ function addCourseRowToReportCard(reportCardTableElement, course, rowNum) {
     <h4 class="sem-col">${course.semester}</h4>
     <h4 class="cred-col">${course.credits}</h4>
     <h4 class="let-col">${course.grade}</h4>
+    <h4 class="pts-col">${points}</h4>
   </div>
   `;
 }
@@ -249,7 +251,17 @@ function addCourseRowToReportCard(reportCardTableElement, course, rowNum) {
  * This function should add HTML for the totals row in the report card.
  */
 function addTotalsRow(reportCardTableElement) {
-  reportCardTableElement.innerHTML += ``;
+  let totalCredits = 0;
+  studentData[semester].forEach((course) => (totalCredits += course.credits));
+  reportCardTableElement.innerHTML += `
+  <div class="table-row totals">
+    <h4 class="code-col"></h4>
+    <h4 class="name-col"></h4>
+    <h4 class="sem-col">Totals:</h4>
+    <h4 id="total-credits" class="cred-col">${totalCredits} credits</h4>
+    <h4 class="lett-col"></h4>
+    <h4 id="total-pts" class="pts-col">?</h4>
+  </div>`;
 }
 
 /**
@@ -273,9 +285,10 @@ function updateReportCard(reportCardTableElement, currentSemester) {
 
   // add your code here
   addReportCardHeaders(reportCardTab);
-  studentData[semester].forEach((course) =>
-    addCourseRowToReportCard(reportCardTab, course)
+  studentData[currentSemester].forEach((course) =>
+    addCourseRowToReportCard(reportCardTab, course, 0)
   );
+  addTotalsRow(reportCardTab);
 }
 
 /**
